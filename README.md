@@ -24,7 +24,7 @@ Depth 是一个融合双目立体视觉、结构光和RGB相机的高精度深�
 
 ## 系统架构
 
-详细的处理流程请参考 [flow.md](flow.md)
+详细的处理流程请参考 [depth-rgb-flow.md](depth-rgb-flow.md)
 
 ```
 图像采集 → 预处理 → 双目匹配(DPU) ┐
@@ -37,7 +37,7 @@ Depth 是一个融合双目立体视觉、结构光和RGB相机的高精度深�
 ```
 depth/
 ├── README.md                 # 本文件
-├── flow.md                   # 详细处理流程
+├── depth-rgb-flow.md         # 详细处理流程
 ├── CMakeLists.txt           # CMake构建配置
 ├── .gitignore               # Git忽略文件
 ├── VERSION                  # 版本号文件
