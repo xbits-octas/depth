@@ -1,0 +1,133 @@
+# Depth Camera Configuration
+
+# Camera Parameters
+camera:
+  # Stereo grayscale cameras
+  stereo:
+    resolution: [1280, 800]
+    fps: 30
+    fov: 60  # degrees
+    baseline: 100  # mm
+
+  # RGB camera
+  rgb:
+    resolution: [1280, 800]
+    fps: 30
+    fov: 60  # degrees
+
+  # Structured light projector
+  structured_light:
+    pattern_type: "random_dots"
+    num_dots: 20000
+    wavelength: "near_infrared"
+
+# Stereo Matching Parameters
+stereo_matching:
+  algorithm: "sgm"  # sgm, bm, or custom
+  min_disparity: 0
+  max_disparity: 128
+  block_size: 5
+  uniqueness_ratio: 15
+  speckle_window_size: 100
+  speckle_range: 32
+  pre_filter_cap: 63
+  use_dpu: true  # Use DPU hardware acceleration
+
+# Structured Light Parameters
+structured_light:
+  blob_detector:
+    min_area: 3
+    max_area: 100
+    threshold: 50
+  matching:
+    max_distance: 10
+    ransac_threshold: 2.0
+
+# Depth Fusion Parameters
+fusion:
+  method: "weighted"  # weighted, selection, or learned
+  stereo_confidence:
+    use_texture: true
+    texture_threshold: 10
+  sl_confidence:
+    use_matching_score: true
+    min_dots: 100
+  weights:
+    stereo: 0.5
+    structured_light: 0.5
+
+# Depth Refinement
+refinement:
+  # Hole filling
+  hole_filling:
+    enabled: true
+    method: "background"  # background, interpolation
+    max_hole_size: 100
+
+  # Edge-preserving filter
+  edge_filter:
+    enabled: true
+    method: "bilateral"  # bilateral, guided, joint_bilateral
+    sigma_spatial: 5
+    sigma_range: 50
+
+  # Temporal filter
+  temporal_filter:
+    enabled: true
+    alpha: 0.3  # IIR filter coefficient
+    motion_detection: true
+
+  # Flying pixel removal
+  flying_pixel_removal:
+    enabled: true
+    threshold: 50  # mm
+
+# AI Depth Enhancement
+ai_enhancement:
+  enabled: false
+  model_path: "data/models/depth_refinement.onnx"
+  use_npu: true
+  input_size: [1280, 800]
+  preprocessing:
+    normalize: true
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+# RGB Registration
+rgb_registration:
+  enabled: true
+  interpolation: "bilinear"  # nearest, bilinear, bicubic
+
+# Post-processing
+postprocessing:
+  depth_range:
+    min: 300   # mm
+    max: 10000  # mm
+  depth_unit: "mm"
+  output_format: "uint16"  # uint16, float32
+
+# Output
+output:
+  depth_map:
+    enabled: true
+    format: "png"  # png, tiff
+  rgb_image:
+    enabled: true
+    format: "png"
+  point_cloud:
+    enabled: false
+    format: "ply"  # ply, pcd
+  confidence_map:
+    enabled: false
+
+# Performance
+performance:
+  target_fps: 30
+  max_latency: 50  # ms
+  num_threads: 4
+
+# Debug
+debug:
+  save_intermediate: false
+  visualization: false
+  log_level: "info"  # debug, info, warning, error

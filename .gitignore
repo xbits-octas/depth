@@ -1,0 +1,88 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+out/
+
+# Compiled files
+*.o
+*.so
+*.a
+*.lib
+*.dll
+*.dylib
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+wheels/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Data files (不提交大文件)
+data/raw/
+data/datasets/
+data/output/
+*.bag
+*.pcd
+*.ply
+*.tiff
+*.raw
+
+# Model files
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pb
+data/models/*.onnx
+checkpoints/
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+CTestTestfile.cmake
+
+# Generated files
+version_generated.h
+
+# System
+.cache/
+*.bak
